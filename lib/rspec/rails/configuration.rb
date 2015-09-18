@@ -38,7 +38,7 @@ module RSpec
 
     # @private
     def self.initialize_configuration(config)
-      config.backtrace_exclusion_patterns << /vendor\//
+      config.backtrace_exclusion_patterns << %r{vendor/}
       config.backtrace_exclusion_patterns << %r{lib/rspec/rails}
 
       # controller settings
@@ -92,9 +92,9 @@ module RSpec
 
         # Adds exclusion filters for gems included with Rails
         def filter_rails_from_backtrace!
-          filter_gems_from_backtrace "actionmailer", "actionpack" ,"actionview"
+          filter_gems_from_backtrace "actionmailer", "actionpack", "actionview"
           filter_gems_from_backtrace "activemodel", "activerecord",
-            "activesupport", "activejob"
+                                     "activesupport", "activejob"
         end
       end
 
